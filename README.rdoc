@@ -1,0 +1,5 @@
+= puppet-packetbeat module
+
+{<img src='https://codex.cegeka.be/jenkins/job/puppet-packetbeat/badge/icon' />}[https://codex.cegeka.be/jenkins/job/puppet-packetbeat/]
+
+This is the packetbeat module.
