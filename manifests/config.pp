@@ -2,7 +2,9 @@ class packetbeat::config(
   $elasticsearch_host = undef,
   $elasticsearch_port = '9200',
   $interfaces = 'any',
-  $disable_procs = 'true',
+  $disable_procs = 'false',
+  $protocols_monitored = {},
+  $processes_monitored = {},
   $agent_name = $::fqdn
 ) {
 

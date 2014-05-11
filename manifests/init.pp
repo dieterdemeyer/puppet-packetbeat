@@ -17,7 +17,9 @@ class packetbeat(
   $elasticsearch_host = undef,
   $elasticsearch_port = '9200',
   $interfaces = 'any',
-  $disable_procs = 'true',
+  $disable_procs = 'false',
+  $protocols_monitored = {},
+  $processes_monitored = {},
   $agent_name = $::fqdn
 ) {
 
@@ -42,11 +44,13 @@ class packetbeat(
         version => $version_real
       }
       class { 'packetbeat::config':
-        elasticsearch_host => $elasticsearch_host,
-        elasticsearch_port => $elasticsearch_port,
-        interfaces         => $interfaces,
-        disable_procs      => $disable_procs,
-        agent_name         => $agent_name
+        elasticsearch_host  => $elasticsearch_host,
+        elasticsearch_port  => $elasticsearch_port,
+        interfaces          => $interfaces,
+        disable_procs       => $disable_procs,
+        protocols_monitored => $protocols_monitored,
+        processes_monitored => $processes_monitored,
+        agent_name          => $agent_name
       }
       class { 'packetbeat::service':
         ensure => $service_state_real,
