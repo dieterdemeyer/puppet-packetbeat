@@ -15,7 +15,8 @@ class packetbeat::service(
 
   service { 'packetbeat':
     ensure => $ensure_real,
-    enable => $enable_real
+    enable => $enable_real,
+    hasstatus => true
   }
 
 }
