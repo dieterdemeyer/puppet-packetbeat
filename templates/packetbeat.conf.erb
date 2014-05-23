@@ -13,6 +13,13 @@
 host = "<%= @elasticsearch_host %>"
 port = <%= @elasticsearch_port %>
 
+protocol = "<%= @elasticsearch_protocol %>"
+<% if @elasticsearch_username -%>
+# Basic auth credentials
+username = "<%= @elasticsearch_username %>"
+password = "<%= @elasticsearch_password %>"
+<% end -%>
+
 [interfaces]
 # Select on which network interfaces to sniff. You can use the "any"
 # keyword to sniff on all connected interfaces.
@@ -42,6 +49,10 @@ dont_read_from_proc = <%= @disable_procs %>
 # The name of the agent as it will show up in the web interface. If not
 # defined, we will just use the hostname.
 name= "<%= @agent_name %>"
+
+# Ignore transactions created by the server on which the agent is installed.
+# This option is useful to remove duplicates if agents are installed on multiple servers.
+ignore_outgoing = <%= @ignore_outgoing %>
 
 [runoptions]
 # The Packetbeat agent can drop privileges after creating the sniffing
