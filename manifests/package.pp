@@ -1,6 +1,6 @@
 class packetbeat::package(
   $version = undef,
-  $versionlock=false
+  $versionlock = false
 ) {
 
   if ! $version {
