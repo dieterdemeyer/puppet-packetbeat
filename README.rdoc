@@ -2,4 +2,54 @@
 
 {<img src='https://codex.cegeka.be/jenkins/job/puppet-packetbeat/badge/icon' />}[https://codex.cegeka.be/jenkins/job/puppet-packetbeat/]
 
-This is the packetbeat module.
+Install {Packetbeat}[http://packetbeat.com], an Open Source application monitoring & packet tracing system.
+
+== Dependencies
+
+This module requires {cegeka/puppet-stdlib}[https://github.com/cegeka/puppet-stdlib] for packagelock support.
+
+== Recommended use
+
+=== Defaults
+
+  class { 'packetbeat':
+    version            => '0.2.0-1.el6',
+	  elasticsearch_host => 'elasticsearch.example.com'
+  }
+
+=== Locked version of packetbeat agent
+
+  class { 'packetbeat':
+    version            => '0.2.0-1.el6',
+    versionlock        => true,
+	  elasticsearch_host => 'elasticsearch.example.com'
+  }
+
+=== Web server example
+
+  class { 'packetbeat':
+    version             => '0.2.0-1.el6',
+    versionlock         => true,
+    elasticsearch_host  => 'elasticsearch.example.com',
+    protocols_monitored => {
+      'http' => '8080'
+    },
+    processes_monitored  => {
+      'tomcat' => 'tomcat'
+    }
+  }
+
+=== DB server example
+
+  class { 'packetbeat':
+    version             => '0.2.0-1.el6',
+    versionlock         => true,
+    elasticsearch_host  => 'elasticsearch.example.com',
+    protocols_monitored => {
+      'mysql' => '3306'
+    },
+    processes_monitored  => {
+      'mysqld' => 'mysqld'
+    }
+  }
+
