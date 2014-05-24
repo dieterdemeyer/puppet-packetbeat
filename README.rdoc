@@ -14,7 +14,7 @@ This module requires {cegeka/puppet-stdlib}[https://github.com/cegeka/puppet-std
 
   class { 'packetbeat':
     version            => '0.2.0-1.el6',
-	  elasticsearch_host => 'elasticsearch.example.com'
+    elasticsearch_host => 'elasticsearch.example.com'
   }
 
 === Locked version of packetbeat agent
@@ -22,7 +22,7 @@ This module requires {cegeka/puppet-stdlib}[https://github.com/cegeka/puppet-std
   class { 'packetbeat':
     version            => '0.2.0-1.el6',
     versionlock        => true,
-	  elasticsearch_host => 'elasticsearch.example.com'
+     elasticsearch_host => 'elasticsearch.example.com'
   }
 
 === Web server example
