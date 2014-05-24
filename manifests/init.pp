@@ -11,7 +11,8 @@
 # Sample Usage:
 #
 class packetbeat(
-  $version = 'present',
+  $version = undef,
+  $versionlock = false,
   $enable = true,
   $service_state = 'running',
   $elasticsearch_host = undef,
@@ -27,9 +28,8 @@ class packetbeat(
   $ignore_outgoing = false
 ) {
 
-  case $version {
-    'present', 'latest': { $version_real = $version }
-    default:             { fail('Class[packetbeat]: parameter version must be present or latest') }
+  if ! $version {
+    fail('Class[Packetbeat]: parameter version must be provided')
   }
 
   case $enable {
@@ -59,8 +59,10 @@ class packetbeat(
   case $::osfamily {
     'RedHat': {
       class { 'packetbeat::package':
-        version => $version_real
+        version     => $version,
+        versionlock => $versionlock
       }
+
       class { 'packetbeat::config':
         elasticsearch_host     => $elasticsearch_host,
         elasticsearch_port     => $elasticsearch_port,
@@ -74,6 +76,7 @@ class packetbeat(
         agent_name             => $agent_name,
         ignore_outgoing        => $ignore_outgoing_real
       }
+
       class { 'packetbeat::service':
         ensure => $service_state_real,
         enable => $enable_real

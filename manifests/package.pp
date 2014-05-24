@@ -1,12 +1,24 @@
-class packetbeat::package($version = 'present') {
+class packetbeat::package(
+  $version = undef,
+  $versionlock=false
+) {
 
-  case $version {
-    'present', 'latest': { $version_real = $version }
-    default:             { fail('Class[packetbeat::package]: parameter version must be present or latest') }
+  if ! $version {
+    fail('Class[Packetbeat::Package]: parameter version must be provided')
   }
 
   package { 'packetbeat' :
-    ensure => $version_real
+    ensure => $version
+  }
+
+  case $versionlock {
+    true: {
+      packagelock { 'packetbeat': }
+    }
+    false: {
+      packagelock { 'packetbeat': ensure => absent }
+    }
+    default: { fail('Class[Packetbeat::Package]: parameter versionlock must be true or false')}
   }
 
 }
