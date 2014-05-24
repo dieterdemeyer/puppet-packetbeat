@@ -10,19 +10,30 @@ This module requires {cegeka/puppet-stdlib}[https://github.com/cegeka/puppet-std
 
 == Recommended use
 
-=== Defaults
+=== Example with many defaults
 
   class { 'packetbeat':
     version            => '0.2.0-1.el6',
     elasticsearch_host => 'elasticsearch.example.com'
   }
 
-=== Locked version of packetbeat agent
+=== Use locked version of packetbeat agent
 
   class { 'packetbeat':
     version            => '0.2.0-1.el6',
     versionlock        => true,
-     elasticsearch_host => 'elasticsearch.example.com'
+    elasticsearch_host => 'elasticsearch.example.com'
+  }
+
+=== Use elasticsearch with Basic Authentication
+
+  class { 'packetbeat':
+    version                => '0.2.0-1.el6',
+    versionlock            => true,
+    elasticsearch_host     => 'elasticsearch.example.com',
+    elasticsearch_protocol => 'https',
+    elasticsearch_username => 'admin',
+    elasticsearch_password => 'secret'
   }
 
 === Web server example
