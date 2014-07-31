@@ -28,6 +28,8 @@ class packetbeat(
   $ignore_outgoing = false
 ) {
 
+  include stdlib
+
   if ! $version {
     fail('Class[Packetbeat]: parameter version must be provided')
   }

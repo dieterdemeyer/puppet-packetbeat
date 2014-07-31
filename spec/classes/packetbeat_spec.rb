@@ -7,5 +7,9 @@ describe 'packetbeat' do
       :osfamily => 'RedHat'
   } }
 
+  let (:params) { {
+      :version => '0.2.0-1.el6'
+  } }
+
   it { should contain_class 'packetbeat' }
 end
